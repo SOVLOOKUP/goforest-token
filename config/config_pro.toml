@@ -13,7 +13,7 @@ url-path = ""
 
 # 数据库配置
 [database]
-    link = "mysql:root:123456@tcp(127.0.0.1:33306)/gmanager"
+    link = "mysql:root:123456@tcp(127.0.0.1:3306)/gmanager"
 
 # gtoken配置文件
 [gtoken]
@@ -25,5 +25,5 @@ url-path = ""
 
 # Redis数据库配置
 [redis]
-  default = "127.0.0.1:16379,0,soccer"
-  cache   = "127.0.0.1:16379,1,soccer?idleTimeout=600"
+  default = "127.0.0.1:6379,0,soccer"
+  cache   = "127.0.0.1:6379,1,soccer?idleTimeout=600"

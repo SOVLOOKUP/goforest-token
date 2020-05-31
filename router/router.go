@@ -12,6 +12,7 @@ import (
 	"gmanager/app/api/menu"
 	"gmanager/app/api/role"
 	"gmanager/app/api/user"
+	"gmanager/app/api/verify"
 	"gmanager/app/component/middle"
 	"gmanager/app/component/started"
 	"gmanager/app/constants"
@@ -44,6 +45,8 @@ func bindRouter() {
 
 	s.BindHandler(urlPath+"/welcome", common.Welcome)
 	s.BindHandler(urlPath+"/admin/welcome.html", common.Welcome)
+
+	s.BindHandler("/auth",verify.Verify)
 
 	s.Group(urlPath+"/system", func(g *ghttp.RouterGroup) {
 		// 系统路由
@@ -88,7 +91,7 @@ func bindRouter() {
 		LoginBeforeFunc:  common.LoginSubmit,
 		LogoutPath:       "/user/logout",
 		LogoutBeforeFunc: common.LogoutBefore,
-		AuthPaths:        g.SliceStr{"/user", "/system"},
+		AuthPaths:        g.SliceStr{"/user", "/system","/auth"},
 		GlobalMiddleware: true,
 		AuthBeforeFunc: func(r *ghttp.Request) bool {
 			// 静态页面不拦截
