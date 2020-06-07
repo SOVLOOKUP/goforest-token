@@ -2,9 +2,11 @@
 
 todo：
 
-1. []token-bucket
+1. [ ] token-bucket
 
 微服务鉴权模块
+
+/auth -> ok
 
 fork from https://github.com/goflyfox/gmanager
 

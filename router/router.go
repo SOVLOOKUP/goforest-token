@@ -125,7 +125,7 @@ func init() {
 	}
 
 	// 上线建议关闭
-	s.BindHandler("/debug", common.Debug)
+	//s.BindHandler("/debug", common.Debug)
 
 	// 301错误页面
 	s.BindStatusHandler(301, common.Error301)
@@ -141,13 +141,13 @@ func init() {
 	s.EnableAdmin("/admin")
 
 	// 为平滑重启管理页面设置HTTP Basic账号密码
-	//s.BindHookHandler("/admin/*", ghttp.HOOK_BEFORE_SERVE, func(r *ghttp.Request) {
-	//	user := g.Config().GetString("admin.user")
-	//	pass := g.Config().GetString("admin.pass")
-	//	if !r.BasicAuth(user, pass) {
-	//		r.ExitAll()
-	//	}
-	//})
+	s.BindHookHandler("/admin/*", ghttp.HOOK_BEFORE_SERVE, func(r *ghttp.Request) {
+		user := g.Config().GetString("admin.user")
+		pass := g.Config().GetString("admin.pass")
+		if !r.BasicAuth(user, pass) {
+			r.ExitAll()
+		}
+	})
 
 	// 强制跳转到HTTPS访问
 	//g.Server().BindHookHandler("/*", ghttp.HOOK_BEFORE_SERVE, func(r *ghttp.Request) {
